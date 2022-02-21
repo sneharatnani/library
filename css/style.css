@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    border-bottom: 3px solid #956120;
+    padding: 15px;
+    background: #deb887d6;
+    display: flex;
+    justify-content: space-between;
+}
+
+header button {
+    text-transform: capitalize;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background: #956120;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 15px;
+}
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(4, 20vw);
+    justify-content: center;
+    gap: 35px;
+    padding: 20px;
+}
+
+.book {
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 2px 2px 8px grey;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.book button {
+    text-transform: capitalize;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: block;
+    border: none;
+    padding: 10px 2px;
+    border-radius: 5px;
+    background: burlywood;
+}
+
+/* modal */
+.modal {
+    border-radius: 10px;
+    padding: 20px;
+    background: burlywood;
+    left: 50%;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type='text'],
+input[type='number'],
+input[type='submit'] {
+    display: block;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+}
+
+form {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
