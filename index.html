@@ -14,10 +14,10 @@
 <body>
     <header>
         <h1>Library</h1>
-        <button>Add book</button>
+        <button class="new-book">new book</button>
     </header>
     <section class="books">
-        <div class="book">
+        <!-- <div class="book">
             <p>book name</p>
             <p>author name</p>
             <p>320</p>
@@ -38,40 +38,20 @@
             <button>read</button>
             <button>remove</button>
         </div>
-        <div class="book">
-            <p>book name</p>
-            <p>author name</p>
-            <p>320</p>
-            <button>read</button>
-            <button>remove</button>
-        </div>
-        <div class="book">
-            <p>book name</p>
-            <p>author name</p>
-            <p>320</p>
-            <button>read</button>
-            <button>remove</button>
-        </div>
-        <div class="book">
-            <p>book name skjdks sdskjdks skjdskjd</p>
-            <p>author name</p>
-            <p>320</p>
-            <button>read</button>
-            <button>remove</button>
-        </div>
+        -->
     </section>
-    <!-- <section class="modal">
+    <section class="modal" id="popup">
         <form>
-            <input type="text" placeholder="Title">
-            <input type="text" placeholder="Author">
-            <input type="number" placeholder="Pages">
+            <input type="text" placeholder="Title" id="title">
+            <input type="text" placeholder="Author" id="author">
+            <input type="number" placeholder="Pages" id="number">
             <div>
                 <label for="status">Read</label>
                 <input type="checkbox" id="status">
             </div>
-            <input type="submit">
         </form>
-    </section> -->
+        <button id="submit">Add</button>
+    </section>
 </body>
 
 </html>

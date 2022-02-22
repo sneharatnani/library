@@ -63,6 +63,10 @@ header button {
 }
 
 /* modal */
+#popup {
+    display: none;
+}
+
 .modal {
     border-radius: 10px;
     padding: 20px;
@@ -76,7 +80,7 @@ header button {
 
 input[type='text'],
 input[type='number'],
-input[type='submit'] {
+#submit {
     display: block;
     border-radius: 5px;
     border: none;

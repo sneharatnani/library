@@ -1,11 +1,8 @@
-function Book(title, author, pages) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.info = function (status) {
-        return `${title} by ${author}, ${pages} pages, ${status}`;
-    };
-}
+let modal = document.querySelector('.modal');
+let newBookBtn = document.querySelector('.new-book');
+newBookBtn.addEventListener('click', () => {
+    modal.removeAttribute('id', 'popup');
+});
 
-let a = new Book('harry potter', 'jrr', 700);
-console.log(a.title);
+let myLibrary = [];
+
