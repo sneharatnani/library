@@ -12,46 +12,33 @@
 </head>
 
 <body>
-    <header>
-        <h1>Library</h1>
-        <button class="new-book">new book</button>
-    </header>
-    <section class="books">
-        <!-- <div class="book">
-            <p>book name</p>
-            <p>author name</p>
-            <p>320</p>
-            <button>read</button>
-            <button>remove</button>
-        </div>
-        <div class="book">
-            <p>book name</p>
-            <p>author name</p>
-            <p>320</p>
-            <button>read</button>
-            <button>remove</button>
-        </div>
-        <div class="book">
-            <p>book name</p>
-            <p>author name</p>
-            <p>320</p>
-            <button>read</button>
-            <button>remove</button>
-        </div>
-        -->
-    </section>
-    <section class="modal" id="popup">
-        <form>
-            <input type="text" placeholder="Title" id="title">
-            <input type="text" placeholder="Author" id="author">
-            <input type="number" placeholder="Pages" id="number">
-            <div>
-                <label for="status">Read</label>
-                <input type="checkbox" id="status">
-            </div>
-        </form>
-        <button id="submit">Add</button>
-    </section>
+    <main>
+        <header>
+            <h1>Library</h1>
+            <button class="new-book">new book</button>
+        </header>
+        <!-- to save books -->
+        <section class="books"></section>
+        <!-- to fill the book details -->
+        <section class="modal" id="popup">
+            <button class="cancel">&#10005;</button>
+            <h2 class="modal-head">Add new book</h2>
+            <form>
+                <input type="text" placeholder="Title" id="title">
+                <input type="text" placeholder="Author" id="author">
+                <input type="number" placeholder="Pages" id="number">
+                <div>
+                    <label for="status">Have you read it?</label>
+                    <input type="checkbox" id="status">
+                </div>
+            </form>
+            <button id="submit">Add</button>
+        </section>
+        <div class="overlay"></div>
+    </main>
+    <footer>
+        <p>&#169;<span></span>Sneha Ratnani</p>
+    </footer>
 </body>
 
 </html>
