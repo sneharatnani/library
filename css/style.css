@@ -116,23 +116,22 @@ header button:hover {
 }
 
 .cancel {
-    height: 30px;
-    border-radius: 15px;
+    align-items: center;
+    display: flex;
+    width: 1.5rem;
     color: white;
-    background: #ff5722;
+    border-radius: 1rem;
+    background: #f44336;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     position: absolute;
     right: -6px;
-    top: -8px;
-    width: 30px;
+    top: -6px;
     justify-content: center;
-    display: flex;
-    align-items: center;
 }
 
 .modal-head {
-    padding-bottom: 15px;
+    padding: 15px 0;
 }
 
 input[type='text'],
@@ -204,10 +203,6 @@ footer {
 @media screen and (max-width: 480px) {
     .books {
         grid-template-columns: repeat(1, 90vw);
-    }
-
-    .cancel {
-        font-size: 1.2rem;
     }
 }
 
