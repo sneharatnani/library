@@ -1,3 +1,4 @@
+// DOM
 const modal = document.querySelector('.modal');
 const newBookBtn = document.querySelector('.new-book');
 const overlay = document.querySelector('.overlay');
@@ -7,47 +8,48 @@ const author = document.querySelector('#author');
 const page = document.querySelector('#number');
 const checkBox = document.querySelector('#status');
 const submitBtn = document.querySelector('#submit');
-// to display books
+// to insert books
 const mainContainer = document.querySelector('.books');
+// save the instances of Book
+let myLibrary = [];
 
 // open form to add new book
-newBookBtn.addEventListener('click', () => {
+function openModal() {
     modal.removeAttribute('id', 'popup');
     overlay.setAttribute('id', 'overlay');
-});
+}
+
 // close the new book form
-cancelBtn.addEventListener('click', () => {
+function closeModal() {
     modal.setAttribute('id', 'popup');
     overlay.removeAttribute('id', 'overlay');
-});
-
-function Book(title, author, page, cbStatus) {
-    this.title = title;
-    this.author = author;
-    this.page = page;
-    this.showStatus = function () {
-        if (cbStatus) {
-            return 'read';
-        }
-        else {
-            return 'not read';
-        }
-    };
 }
-// save the instances of Book
-const myLibrary = [];
-submitBtn.addEventListener('click', () => {
-    if (title.value !== '' && author.value !== '' && page.value !== '') {
-        myLibrary.push(new Book(title.value, author.value, page.value, checkBox.checked));
-        addBookToLibrary(myLibrary);
-        title.value = '';
-        author.value = '';
-        page.value = '';
-        checkBox.checked = false;
-        modal.setAttribute('id', 'popup');
-        overlay.removeAttribute('id', 'overlay');
+
+// reset form variables
+function resetForm() {
+    title.value = '';
+    author.value = '';
+    page.value = '';
+    checkBox.checked = false;
+}
+
+// make a new instance and push it into array
+function createBookObj() {
+    myLibrary.push(new Book(title.value, author.value, page.value, checkBox.checked));
+}
+
+// book class
+class Book {
+    constructor(title, author, page, cbStatus) {
+        this.title = title;
+        this.author = author;
+        this.page = page;
+        this.showStatus = () => {
+            return cbStatus ? 'read' : 'not read';
+        }
     }
-});
+}
+
 
 // iterate over array and display the book
 function addBookToLibrary(arr) {
@@ -94,6 +96,19 @@ function makeBook(obj) {
         }
     });
 }
+
+
+// events
+newBookBtn.addEventListener('click', openModal);
+cancelBtn.addEventListener('click', closeModal);
+submitBtn.addEventListener('click', () => {
+    if (title.value !== '' && author.value !== '' && page.value !== '') {
+        createBookObj();
+        addBookToLibrary(myLibrary);
+        resetForm();
+        closeModal();
+    }
+});
 
 // current year
 let currentYear = new Date().getFullYear();
