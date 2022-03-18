@@ -33,6 +33,39 @@ function resetForm() {
     checkBox.checked = false;
 }
 
+// remove book
+function removeBook(e) {
+    let parent = e.target.parentNode;/* get the parent node of remove button */
+    if (e.target.classList.value === 'remove') {
+        myLibrary.splice(Number(parent.id), 1);/* remove book from array */
+        mainContainer.removeChild(parent);
+        addBookToLibrary(myLibrary);/* run the loop again to update id */
+    }
+}
+
+// update the reading status
+function updateReadingStatus(e) {
+    let parent = e.target.parentNode;
+    let index = Number(parent.id);
+    if (e.target.classList.value === 'status') {
+        if (myLibrary[index].showStatus() === 'read') {
+            e.target.textContent = 'not read';
+            myLibrary[index].showStatus = function () {
+                return 'not read';
+            }
+            addBookToLibrary(myLibrary);
+        }
+
+        else {
+            e.target.textContent = 'read';
+            myLibrary[index].showStatus = function () {
+                return 'read';
+            }
+            addBookToLibrary(myLibrary);
+        }
+    }
+}
+
 // make a new instance and push it into array
 function createBookObj() {
     myLibrary.push(new Book(title.value, author.value, page.value, checkBox.checked));
@@ -44,59 +77,47 @@ class Book {
         this.title = title;
         this.author = author;
         this.page = page;
-        this.showStatus = () => {
-            return cbStatus ? 'read' : 'not read';
-        }
+        this.cbStatus = cbStatus;
+    }
+    showStatus() {
+        return this.cbStatus ? 'read' : 'not read';
     }
 }
 
-
 // iterate over array and display the book
 function addBookToLibrary(arr) {
-    mainContainer.textContent = '';
+    mainContainer.textContent = ''; /* clear main container */
     for (let i = 0; i < arr.length; i++) {
         makeBook(arr[i]);
     };
 }
 
+// create a book
 function makeBook(obj) {
-    const bookContainer = document.createElement('div');
-    const title = document.createElement('p');
-    const author = document.createElement('p');
-    const page = document.createElement('p');
-    const statusBtn = document.createElement('button');
-    const removeBtn = document.createElement('button');
+    let bookContainer = document.createElement('div');
+    bookContainer.classList.add('book');
+    bookContainer.setAttribute('id', `${myLibrary.indexOf(obj)}`);
+
+    let title = document.createElement('p');
     title.textContent = obj.title;
+
+    let author = document.createElement('p');
     author.textContent = obj.author;
+
+    let page = document.createElement('p');
     page.textContent = obj.page;
+
+    let statusBtn = document.createElement('button');
     statusBtn.textContent = obj.showStatus();
+    statusBtn.classList.add('status');
+
+    let removeBtn = document.createElement('button');
     removeBtn.textContent = 'remove';
-    removeBtn.setAttribute('class', 'remove');
+    removeBtn.classList.add('remove');
+
     bookContainer.append(title, author, page, statusBtn, removeBtn);
     mainContainer.appendChild(bookContainer);
-    bookContainer.classList.add('book');
-    // remove book
-    removeBtn.addEventListener('click', () => {
-        myLibrary.splice(myLibrary.indexOf(obj), 1);
-        mainContainer.removeChild(bookContainer);
-    });
-    // update the reading status
-    statusBtn.addEventListener('click', () => {
-        if (obj.showStatus() === 'read') {
-            statusBtn.textContent = 'not read';
-            myLibrary[myLibrary.indexOf(obj)].showStatus = function () {
-                return 'not read';
-            };
-        }
-        else {
-            statusBtn.textContent = 'read';
-            myLibrary[myLibrary.indexOf(obj)].showStatus = function () {
-                return 'read';
-            };
-        }
-    });
 }
-
 
 // events
 newBookBtn.addEventListener('click', openModal);
@@ -108,6 +129,14 @@ submitBtn.addEventListener('click', () => {
         resetForm();
         closeModal();
     }
+});
+
+document.addEventListener('click', (e) => {
+    removeBook(e);
+});
+
+document.addEventListener('click', (e) => {
+    updateReadingStatus(e);
 });
 
 // current year
